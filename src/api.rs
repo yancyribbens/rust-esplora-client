@@ -8,15 +8,15 @@ pub use bitcoin::{
     transaction, Amount, BlockHash, OutPoint, ScriptBuf, Transaction, TxIn, TxOut, Txid, Witness,
 };
 
-use serde::Deserialize;
+use serde::{Serialize, Deserialize};
 
-#[derive(Deserialize, Clone, Debug, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
 pub struct PrevOut {
     pub value: u64,
     pub scriptpubkey: ScriptBuf,
 }
 
-#[derive(Deserialize, Clone, Debug, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
 pub struct Vin {
     pub txid: Txid,
     pub vout: u32,
@@ -29,13 +29,13 @@ pub struct Vin {
     pub is_coinbase: bool,
 }
 
-#[derive(Deserialize, Clone, Debug, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
 pub struct Vout {
     pub value: u64,
     pub scriptpubkey: ScriptBuf,
 }
 
-#[derive(Deserialize, Clone, Debug, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
 pub struct TxStatus {
     pub confirmed: bool,
     pub block_height: Option<u32>,
@@ -43,14 +43,14 @@ pub struct TxStatus {
     pub block_time: Option<u64>,
 }
 
-#[derive(Deserialize, Clone, Debug, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
 pub struct MerkleProof {
     pub block_height: u32,
     pub merkle: Vec<Txid>,
     pub pos: usize,
 }
 
-#[derive(Deserialize, Clone, Debug, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
 pub struct OutputStatus {
     pub spent: bool,
     pub txid: Option<Txid>,
@@ -58,14 +58,14 @@ pub struct OutputStatus {
     pub status: Option<TxStatus>,
 }
 
-#[derive(Deserialize, Clone, Debug, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
 pub struct BlockStatus {
     pub in_best_chain: bool,
     pub height: Option<u32>,
     pub next_best: Option<BlockHash>,
 }
 
-#[derive(Deserialize, Clone, Debug)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct Tx {
     pub txid: Txid,
     pub version: i32,
@@ -76,7 +76,7 @@ pub struct Tx {
     pub fee: u64,
 }
 
-#[derive(Deserialize, Clone, Debug, PartialEq, Eq)]
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
 pub struct BlockTime {
     pub timestamp: u64,
     pub height: u32,
