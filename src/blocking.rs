@@ -186,7 +186,7 @@ impl BlockingClient {
     }
 
     /// Get a [`Transaction`] option given its [`Txid`]
-    pub fn get_tx(&self, txid: &Txid) -> Result<Option<Transaction>, Error> {
+    pub fn get_tx(&self, txid: &bitcoin::Txid) -> Result<Option<Transaction>, Error> {
         self.get_opt_response(&format!("/tx/{}/raw", txid))
     }
 
